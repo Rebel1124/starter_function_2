@@ -41,7 +41,7 @@
 
 
 # from main import client,db_id ,db_collection_id
-from db import project_id, api_key, db_id, db_collection_id
+# from db import project_id, api_key, db_id, db_collection_id
 from appwrite.client import Client
 from appwrite.services.databases import Databases
 
@@ -62,10 +62,10 @@ def main(context):
 
     client = Client()
 
-    # project_id = os.environ['APPWRITE_PROJECT_ID']
-    # api_key = os.environ['APPWRITE_API_KEY']
-    # db_id = os.environ['APPWRITE_DB_ID']
-    # db_collection_id = os.environ['APPWRITE_COLLECTION_ID']
+    project_id = os.environ['APPWRITE_PROJECT_ID']
+    api_key = os.environ['APPWRITE_API_KEY']
+    db_id = os.environ['APPWRITE_DB_ID']
+    db_collection_id = os.environ['APPWRITE_COLLECTION_ID']
 
     client = (client
         .set_endpoint('https://cloud.appwrite.io/v1') # Your API Endpoint
