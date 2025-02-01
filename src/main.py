@@ -75,69 +75,16 @@ def main(context):
 
     db = Databases(client)
 
-    # try:
-    #     # Fetch all documents
-    #     documents = db.list_documents(db_id, db_collection_id)
-
-    #     # Loop through and delete each document
-    #     for document in documents['documents']:
-    #         db.delete_document(db_id, db_collection_id, document['$id'])
-    #         # print(f"Deleted document: {document['$id']}")
-    # except:
-    #     pass
-
-
     try:
-        # Step 1: Backup Collection Schema
-        # print("Fetching collection details...")
-        old_collection = db.get_collection(db_id, db_collection_id)
+        # Fetch all documents
+        documents = db.list_documents(db_id, db_collection_id)
 
-        # Extract collection details
-        collection_name = old_collection["name"]
-        attributes = old_collection["attributes"]
-        permissions = old_collection["$permissions"]
-
-        # print(f"Collection '{collection_name}' backed up successfully.")
-
-        # Step 2: Delete the Existing Collection
-        db.delete_collection(db_id, db_collection_id)
-        # print(f"Collection '{collection_name}' deleted successfully.")
-
-        # Step 3: Recreate Collection with the Same Name
-        new_collection = db.create_collection(db_id, collection_name, permissions)
-        new_collection_id = new_collection["$id"]
-        # print(f"New collection created: {new_collection_id}")
-
-        # Step 4: Restore Attributes
-        for attr in attributes:
-            attr_type = attr["type"]
-            key = attr["key"]
-            required = attr["required"]
-            default = attr.get("default", None)
-
-            if attr_type == "string":
-                db.create_string_attribute(db_id, new_collection_id, key, 255, required, default)
-            elif attr_type == "integer":
-                db.create_integer_attribute(db_id, new_collection_id, key, required, default)
-            elif attr_type == "boolean":
-                db.create_boolean_attribute(db_id, new_collection_id, key, required, default)
-            elif attr_type == "float":
-                db.create_float_attribute(db_id, new_collection_id, key, required, default)
-            elif attr_type == "email":
-                db.create_email_attribute(db_id, new_collection_id, key, required, default)
-            elif attr_type == "url":
-                db.create_url_attribute(db_id, new_collection_id, key, required, default)
-            elif attr_type == "enum":
-                db.create_enum_attribute(db_id, new_collection_id, key, attr["elements"], required, default)
-
-            # print(f"Restored attribute: {key} ({attr_type})")
-
-        # print(f"✅ Collection '{collection_name}' has been fully recreated with the same structure!")
-
-    except Exception as e:
+        # Loop through and delete each document
+        for document in documents['documents']:
+            db.delete_document(db_id, db_collection_id, document['$id'])
+            # print(f"Deleted document: {document['$id']}")
+    except:
         pass
-
-
 
 
     taskNum = str(random.randint(4, 9))
