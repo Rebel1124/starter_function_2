@@ -81,7 +81,7 @@ def main(context):
     # Loop through and delete each document
     for document in documents['documents']:
         db.delete_document(db_id, db_collection_id, document['$id'])
-        print(f"Deleted document: {document['$id']}")
+        # print(f"Deleted document: {document['$id']}")
 
     taskNum = str(random.randint(4, 9))
     dateNow=datetime.now().date()
