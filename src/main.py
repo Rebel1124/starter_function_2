@@ -98,7 +98,7 @@ def main(context):
 
 
     # taskNum = str(random.randint(4, 9))
-    taskNum=taskNumDef()
+    taskNum= str(taskNumDef())
     dateNow=datetime.now().date()
     dateString = dateNow.strftime('%Y-%m-%d, %H:%M:%S')
 
