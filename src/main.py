@@ -58,8 +58,8 @@ import secrets
 #     date_added: str =Field(default = datetime.now().date())
 
 def taskNumDef():
-    taskNumA = str(random.randint(5, 9))
-    taskNumB = str(random.randint(5, 9))
+    taskNumA = random.randint(5, 9)
+    taskNumB = random.randint(5, 9)
 
     num = taskNumA + taskNumB
 
